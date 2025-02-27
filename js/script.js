@@ -8,22 +8,33 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // Check if Dark Mode preference is saved in localStorage
-    if (localStorage.getItem("dark-mode") === "enabled") {
+    // Function to enable Dark Mode
+    function enableDarkMode() {
         body.classList.add("dark-mode");
+        localStorage.setItem("dark-mode", "enabled");
         darkModeToggle.textContent = "☀️ Light Mode";
     }
 
-    // Toggle Dark Mode
-    darkModeToggle.addEventListener("click", () => {
-        body.classList.toggle("dark-mode");
+    // Function to disable Dark Mode
+    function disableDarkMode() {
+        body.classList.remove("dark-mode");
+        localStorage.setItem("dark-mode", "disabled");
+        darkModeToggle.textContent = "🌙 Dark Mode";
+    }
 
+    // Check Dark Mode preference on page load and apply the correct mode
+    if (localStorage.getItem("dark-mode") === "enabled") {
+        enableDarkMode();
+    } else {
+        disableDarkMode();
+    }
+
+    // Toggle Dark Mode when button is clicked
+    darkModeToggle.addEventListener("click", () => {
         if (body.classList.contains("dark-mode")) {
-            localStorage.setItem("dark-mode", "enabled");
-            darkModeToggle.textContent = "☀️ Light Mode";
+            disableDarkMode();
         } else {
-            localStorage.setItem("dark-mode", "disabled");
-            darkModeToggle.textContent = "🌙 Dark Mode";
+            enableDarkMode();
         }
     });
 
