@@ -38,6 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Smooth Page Load Transition
-    document.body.style.opacity = "1";
+    // Ensure page transitions smoothly after applying the theme
+    setTimeout(() => {
+        document.body.style.opacity = "1";
+    }, 100);
 });
